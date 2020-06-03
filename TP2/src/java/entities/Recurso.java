@@ -37,7 +37,7 @@ public class Recurso implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "RECURSOID")
-    private Integer recursoid;
+    public Integer recursoid;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)

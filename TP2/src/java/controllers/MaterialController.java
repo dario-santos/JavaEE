@@ -83,4 +83,19 @@ public class MaterialController {
         material.setRecursonome("");
         material.setTags("");
     }
+    
+    public String removeRecurso()
+    {
+        try
+        {
+            material.setRecursoid(material.recursoid);
+            userBean.remover(material.recursoid);
+        }
+        catch(NullPointerException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
+        return "removerProduto.xhtml";
+    }
 }

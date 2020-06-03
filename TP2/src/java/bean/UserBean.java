@@ -62,9 +62,19 @@ public class UserBean {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void reservar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void remover(Integer id) 
+    {
+        try
+        {
+            Recurso r = em.find(Recurso.class, id);
+            em.remove(r);
+        }
+        catch(NullPointerException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
+
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
