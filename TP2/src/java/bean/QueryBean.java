@@ -1,6 +1,9 @@
 package bean;
 
 import entities.Utilizador;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,14 +28,14 @@ public class QueryBean {
     /**
      * Adiciona um novo utilizador
      * @param username
-     * @param hashpassword -> falta fazer o hash no utilizadorescontroller
+     * @param password
      * @return o utilizador
      */
     public boolean addUtilizador (String username, String password) {
         
         boolean addedUser = false;
-        
-        novoUtilizador = new Utilizador(username, password);
+        System.out.println("PALAVRA PASSE: " + calculateSHA256(password));
+        novoUtilizador = new Utilizador(username, calculateSHA256(password));
             
         try {
             em.persist(novoUtilizador);
@@ -53,21 +56,17 @@ public class QueryBean {
                 .setParameter("username", username).getSingleResult();
         
         
-            if (user_password.equals(password)) {
+            if (user_password.equals(calculateSHA256(password))) {
                 authenticated = true;
             }
         }
-        catch (Exception ex) { System.out.println(ex.getMessage()); }
-
-        // Calcular o hash da password introduzida.
-        //String hashedPassword = DigestUtils.sha256Hex(password);
-            
-        // Verificação da password introduzida com a registada.
-        //if (user_password.equals(hashedPassword)) {
+        catch (Exception ex) 
+        { 
+            System.out.println(ex.getMessage()); 
+        }
         return authenticated;
     }
 
-    /*
     // Calcular hash.
     public String calculateSHA256(String password) {
         MessageDigest hash = null;
@@ -86,5 +85,4 @@ public class QueryBean {
         }
         return hexString.toString();
     }
-*/
 }
