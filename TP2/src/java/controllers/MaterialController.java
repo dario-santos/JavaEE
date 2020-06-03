@@ -33,14 +33,6 @@ public class MaterialController {
         
         resetMaterial();
         return "consultarTodos.xhtml";
-        /*
-        novoUtilizador.setUsername(novoUtilizador.username);
-        novoUtilizador.setHashpassword(novoUtilizador.hashpassword);
-        
-        listaUtilizadores = queryBean.getUtilizador();
-        queryBean.addUtilizador(novoUtilizador);
-        return "listUtilizadores.xhtml";
-        */
     }
     
     // CONSULTAR

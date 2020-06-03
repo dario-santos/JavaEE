@@ -42,11 +42,19 @@ public class UtilizadoresController {
         novoUtilizador.setUsername(novoUtilizador.username);
         novoUtilizador.setHashpassword(novoUtilizador.hashpassword);
         
-        //userBean.setCurrentUser_username(novoUtilizador.username);
+        currentUser_username = novoUtilizador.username;
+         
+        try {
+            boolean addedUser = queryBean.addUtilizador(novoUtilizador.username, novoUtilizador.hashpassword);
+
+            if (addedUser) {
+                listaUtilizadores = queryBean.getUtilizador();
+                return "options.xhtml";
+            }
+        } catch (Exception e) { }
         
-        queryBean.addUtilizador(novoUtilizador.username, novoUtilizador.hashpassword);
-        listaUtilizadores = queryBean.getUtilizador();
-        return "index.xhtml";
+        
+        return "addNewUtilizador_error.xhtml";
     }
     
     // Login: verificar as credenciais.

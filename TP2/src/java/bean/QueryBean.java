@@ -28,11 +28,19 @@ public class QueryBean {
      * @param hashpassword -> falta fazer o hash no utilizadorescontroller
      * @return o utilizador
      */
-    public void addUtilizador (String username, String password) {
+    public boolean addUtilizador (String username, String password) {
         
-            novoUtilizador = new Utilizador(username, password);
+        boolean addedUser = false;
+        
+        novoUtilizador = new Utilizador(username, password);
+            
+        try {
             em.persist(novoUtilizador);
+            addedUser = true;
+        }
+        catch (Exception ex) { }
         
+        return addedUser;
     }  
     
     public boolean checkLogin (String username, String password) {
