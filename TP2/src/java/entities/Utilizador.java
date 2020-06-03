@@ -40,7 +40,7 @@ public class Utilizador implements Serializable {
     public String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size(min = 1, max = 30)
     @Column(name = "HASHPASSWORD")
     public String hashpassword;
     @JoinTable(name = "REQUISITAR", joinColumns = {
