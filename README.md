@@ -3,7 +3,7 @@
 ## Registo e Login Users
 - [x] Registo (sem armazenamento seguro da password - tá em plain text);
 - [x] Verificação Credenciais de Login (sem hash);
-- [x] Hash Password.
+- [ ] Hash Password.
 
 ## Recursos
 - [x] Inserir;
