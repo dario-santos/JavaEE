@@ -1,8 +1,8 @@
 # JavaEE
 
 ## Registo e Login Users
-- [x] Registo (sem armazenamento seguro da password - tá em plain text);
-- [x] Verificação Credenciais de Login (sem hash);
+- [x] Registo;
+- [x] Verificação Credenciais de Login;
 - [x] Hash Password.
 
 ## Recursos
@@ -12,6 +12,9 @@
 - [ ] Requisitar;
 - [ ] Reservar;
 - [ ] Remover;
+
+## Importante
+- [ ] Notificar o utilizador que reservou primeiro um material quando o utilizador que requisitou devolver o material
 
 ### Adicionais
 - [ ] Reclamações;
