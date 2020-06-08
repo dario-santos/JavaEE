@@ -59,6 +59,12 @@ public class MenuBean
                 .setParameter("id", user.username).getResultList();
     }
     
+    public List<Reservar> consultarNotifications(Utilizador user) 
+    {
+        return (List<Reservar>) em.createNamedQuery("Reservar.findAllNotificationsByUserId")
+                .setParameter("id", user.username).getResultList();
+    }
+    
     public Integer greatestRecursoId()
     {    
         Integer max = 0;
@@ -174,7 +180,10 @@ public class MenuBean
             em.createQuery("update Requisitar set devolvido = true where id=" + requisitar.id).executeUpdate();
             
             // Vai buscar a última reserva colocada
-            Reservar reserva = (Reservar) em.createNamedQuery("Reservar.findFirst").getSingleResult();
+            List<Reservar> reservas =  em.createNamedQuery("Reservar.findFirst")
+                    .setParameter("id", requisitar.recursoid.recursoid).getResultList();
+            
+            Reservar reserva = reservas.get(0);
             
             // Atualiza a linha da reserva para notificar quando o utilizador ir ao menu principal
             em.createQuery("update Reservar set notificar = true where id=" + reserva.getId()).executeUpdate();
@@ -195,5 +204,19 @@ public class MenuBean
             System.out.println(ex.getMessage());
         }
         
+    }
+
+    public void removerReserva(Integer id) 
+    {
+     
+        try
+        {
+            Reservar r = em.find(Reservar.class, id);
+            em.remove(r);
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 }

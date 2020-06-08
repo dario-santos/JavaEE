@@ -104,7 +104,23 @@ public class JardimController implements Serializable
     {
         return recursoBean.consultarHistoricoRequisitados(user);
     }
-
+    
+    public Integer getNotifications()
+    {
+        return recursoBean.consultarNotifications(user).size();
+    }
+    
+    
+    public List<Reservar> getNotificationList()
+    {
+        List<Reservar> notifications = recursoBean.consultarNotifications(user);
+        
+        // apagar todas as notificações da tabela
+        for(Reservar r : notifications)
+            recursoBean.removerReserva(r.getId());
+        
+        return notifications;
+    }
 
     /**
      * Signs up a new user
