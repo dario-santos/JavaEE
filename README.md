@@ -9,16 +9,18 @@
 - [x] Inserir;
 - [x] Consultar Todos;
 - [x] Consultar por Tags;
-- [ ] Requisitar;
-- [ ] Reservar;
-- [ ] Remover;
+- [X] Requisitar;
+- [X] Reservar;
+- [X] Remover;
+- [x] Consultar Reservas;
+- [X] Consultar Requisitados.
 
 ## Importante
-- [ ] Notificar o utilizador que reservou primeiro um material quando o utilizador que requisitou devolver o material
+- [X] Notificar o utilizador que reservou primeiro um material quando o utilizador que requisitou devolver o material.
 
 ### Adicionais
 - [ ] Reclamações;
-- [ ] Poder consultar o histórico de quem já levou um recurso;
+- [X] Poder consultar o histórico de quem já levou um recurso;
 - [ ] Perfil com estatísticas do utilizador;
-- [ ] No mesmo browser não terminar a sessão; 
+- [ ] No mesmo browser não terminar a sessão;
 - [ ] Várias lojas.
