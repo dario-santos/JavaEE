@@ -34,6 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Recurso.findByTags", query = "SELECT r FROM Recurso r WHERE r.tags LIKE :tags")})
 public class Recurso implements Serializable {
 
+    @Size(max = 30)
+    @Column(name = "PROPRIETARIO")
+    private String proprietario;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recursoid")
     private Collection<Reservar> reservarCollection;
 
@@ -157,6 +161,14 @@ public class Recurso implements Serializable {
 
     public void setReservarCollection(Collection<Reservar> reservarCollection) {
         this.reservarCollection = reservarCollection;
+    }
+
+    public String getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(String proprietario) {
+        this.proprietario = proprietario;
     }
 
 }

@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Reservar.findByData", query = "SELECT r FROM Reservar r WHERE r.data = :data")
     , @NamedQuery(name = "Reservar.findFirst", query = "SELECT r FROM Reservar r WHERE r.recursoid.recursoid = :id ORDER BY r.data")
     , @NamedQuery(name = "Reservar.findAllNotificationsByUserId", query = "SELECT r FROM Reservar r WHERE r.username.username = :id AND r.notificar = true")
+    , @NamedQuery(name = "Reservar.findByRecursoId", query = "SELECT r FROM Reservar r WHERE r.recursoid.recursoid = :id")
     , @NamedQuery(name = "Reservar.findById", query = "SELECT r FROM Reservar r WHERE r.id = :id")})
 public class Reservar implements Serializable {
 

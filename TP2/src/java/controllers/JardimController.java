@@ -178,6 +178,7 @@ public class JardimController implements Serializable
     public String AddNewRecurso() 
     {
         recurso.setRecursoid(recursoBean.greatestRecursoId() + 1);
+        recurso.setProprietario(user.username);
         
         recursoBean.insert(recurso);
         
@@ -266,14 +267,15 @@ public class JardimController implements Serializable
     {
         try
         {
-            recursoBean.remover(recurso.recursoid);
+            if(recursoBean.remover(recurso.recursoid, user.username))
+                return "RemoveRecurso.xhtml";
         }
         catch(Exception ex)
         {
             System.out.println(ex.getMessage());
         }
         
-        return "RemoveRecurso.xhtml";
+        return "RemoveRecurso_Error.xhtml";
     }
     
     /**

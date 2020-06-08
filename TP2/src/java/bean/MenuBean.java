@@ -129,17 +129,30 @@ public class MenuBean
         }
     }
 
-    public void remover(Integer id) 
+    public Boolean remover(Integer id, String username) 
     {
         try
         {
             Recurso r = em.find(Recurso.class, id);
-            em.remove(r);
+            
+            Boolean isNotRequisitado = em.createNamedQuery("Requisitar.findByRecursoId")
+                .setParameter("id", id).getResultList().isEmpty();
+            
+            
+            Boolean isNotReservado = em.createNamedQuery("Reservar.findByRecursoId")
+                .setParameter("id", id).getResultList().isEmpty();
+            
+            
+            if(r.getProprietario().equals(username) && isNotRequisitado && isNotReservado)
+                em.remove(r);
+            return true;
         }
         catch(Exception ex)
         {
             System.out.println(ex.getMessage());
         }
+        
+        return false;
     }
 
 
