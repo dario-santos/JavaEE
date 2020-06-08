@@ -100,6 +100,11 @@ public class JardimController implements Serializable
         return recursoBean.consultarRequisitados(user, false);
     }
 
+    public List<Requisitar> getHistoricoRequisitados() 
+    {
+        return recursoBean.consultarHistoricoRequisitados(user);
+    }
+
 
     /**
      * Signs up a new user

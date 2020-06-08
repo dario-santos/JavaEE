@@ -50,6 +50,13 @@ public class MenuBean
                 .setParameter("id", user.username).setParameter("devolvido", devolvido).getResultList();
     }
     
+    
+    public List<Requisitar> consultarHistoricoRequisitados(Utilizador user)
+    {
+        return (List<Requisitar>) em.createNamedQuery("Requisitar.findAllByUserId")
+                .setParameter("id", user.username).getResultList();
+    }
+    
     public Integer greatestRecursoId()
     {    
         Integer max = 0;
