@@ -22,5 +22,5 @@
 - [ ] Reclamações;
 - [X] Poder consultar o histórico de quem já levou um recurso;
 - [ ] Perfil com estatísticas do utilizador;
-- [ ] No mesmo browser não terminar a sessão;
+- [X] No mesmo browser não terminar a sessão;
 - [ ] Várias lojas.

@@ -151,6 +151,15 @@ public class JardimController implements Serializable
         
         return "SignIn_Error.xhtml";
     }
+    
+    /**
+     * Signs in a user
+     * @return The according web page
+     */
+    public Boolean IsUserLogged()
+    {
+        return user.username != null && !"".equals(user.username);
+    }
 
     /**
      * Logs out the current user
