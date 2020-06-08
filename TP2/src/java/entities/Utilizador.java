@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,6 +32,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Utilizador.getUserPassword", query = "SELECT u.hashpassword FROM Utilizador u WHERE u.username = :username")
     , @NamedQuery(name = "Utilizador.findByHashpassword", query = "SELECT u FROM Utilizador u WHERE u.hashpassword = :hashpassword")})
 public class Utilizador implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    private Collection<Reservar> reservarCollection;
+
+    @OneToMany(mappedBy = "username")
+    private Collection<Requisitar> requisitarCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -120,6 +128,24 @@ public class Utilizador implements Serializable {
     @Override
     public String toString() {
         return "tp2.entities.Utilizador[ username=" + username + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Requisitar> getRequisitarCollection() {
+        return requisitarCollection;
+    }
+
+    public void setRequisitarCollection(Collection<Requisitar> requisitarCollection) {
+        this.requisitarCollection = requisitarCollection;
+    }
+
+    @XmlTransient
+    public Collection<Reservar> getReservarCollection() {
+        return reservarCollection;
+    }
+
+    public void setReservarCollection(Collection<Reservar> reservarCollection) {
+        this.reservarCollection = reservarCollection;
     }
 
 }

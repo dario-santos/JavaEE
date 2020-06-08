@@ -3,19 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Adicionar novo utilizador</title>
+        <title>Jardim - Registo</title>
     </h:head>
     <h:body>
+        Registo de um Novo Utilizador
         <h:form>
-            
             <h:panelGrid columns="2" >
-                <h:outputLabel value="Username: "/>
-                <h:inputText value="#{utilizadoresController.novoUtilizador.username}"/>
-                <h:outputLabel value="Password: "/>
-                <h:inputSecret value="#{utilizadoresController.novoUtilizador.hashpassword}"/>
+                <h:outputLabel value="Nome: "/>
+                <h:inputText value="#{jardimController.user.username}"/>
+                <h:outputLabel value="Palavra-passe: "/>
+                <h:inputSecret value="#{jardimController.user.hashpassword}"/>
             </h:panelGrid>
             
-            <h:commandButton value="Save" action="#{utilizadoresController.addNewUtilizador()}" style="width:100px"/>
+            <h:commandButton value="Registar" action="#{jardimController.SignUp()}" style="width:100px"/>
         </h:form>
         <h:form>
         <h:commandButton value="Cancelar" action="index" style="width:100px"/>

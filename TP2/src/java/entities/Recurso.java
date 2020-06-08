@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -31,6 +33,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Recurso.findByRecursonome", query = "SELECT r FROM Recurso r WHERE r.recursonome = :recursonome")
     , @NamedQuery(name = "Recurso.findByTags", query = "SELECT r FROM Recurso r WHERE r.tags LIKE :tags")})
 public class Recurso implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recursoid")
+    private Collection<Reservar> reservarCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recursoid")
+    private Collection<Requisitar> requisitarCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -131,6 +139,24 @@ public class Recurso implements Serializable {
     @Override
     public String toString() {
         return "tp2.entities.Recurso[ recursoid=" + recursoid + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Requisitar> getRequisitarCollection() {
+        return requisitarCollection;
+    }
+
+    public void setRequisitarCollection(Collection<Requisitar> requisitarCollection) {
+        this.requisitarCollection = requisitarCollection;
+    }
+
+    @XmlTransient
+    public Collection<Reservar> getReservarCollection() {
+        return reservarCollection;
+    }
+
+    public void setReservarCollection(Collection<Reservar> reservarCollection) {
+        this.reservarCollection = reservarCollection;
     }
 
 }

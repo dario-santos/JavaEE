@@ -4,50 +4,51 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Consultar Materiais</title>
+        <title>Jardim - Pesquisar recursos</title>
     </h:head>
     <h:body>
         
         <h:form>
-            <h:inputText value="#{materialController.material.tags}" />
-            <h:commandButton value="Pesquisar" action="#{materialController.searchMaterials()}" /> 
+            <h:inputText value="#{jardimController.recurso.tags}" />
+            <h:commandButton value="Pesquisar" action="#{jardimController.SearchRecursos()}" /> 
         </h:form>
         
-        <h:dataTable value="#{materialController.listaMateriaisTags}" var="material" border="1">
+        <h:dataTable value="#{jardimController.recursos}" var="recurso" border="1">
                 <h:column>
                     
                     <f:facet name="header">
-                        <h:outputText value="Nome Material"/>
+                        <h:outputText value="Nome Recurso"/>
                     </f:facet>
                     
-                    <h:outputText value="#{material.recursonome}"/>
+                    <h:outputText value="#{recurso.recursonome}"/>
                     
                 </h:column>
                 
                 <h:column>
                     
                     <f:facet name="header">
-                        <h:outputText value="ID"/>
+                        <h:outputText value="Id"/>
                     </f:facet>
                     
-                    <h:outputText value="#{material.recursoid}"/>
+                    <h:outputText value="#{recurso.recursoid}"/>
                     
                 </h:column>
                 
-                <h:column>
-                    
-                    <f:facet name="header">
-                        <h:outputText value="Tags"/>
-                    </f:facet>
-                    
-                    <h:outputText value="#{material.tags}"/>
-                    
-                </h:column>
             
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Tag(s)"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{recurso.tags}"/>
+                    
+                </h:column>
+                
             </h:dataTable>
             
             <h:form>
-                <h:commandButton id="back" value="Voltar" action="options" />
+                <h:commandButton id="back" value="Voltar" action="MainMenu" />
             </h:form>
     </h:body>
 </html>
