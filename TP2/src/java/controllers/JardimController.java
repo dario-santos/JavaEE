@@ -142,7 +142,7 @@ public class JardimController implements Serializable
      */
     public String LogOut() 
     {
-        this.user = null;
+        this.user = new Utilizador();
         return "index.xhtml";
     }
     
@@ -220,7 +220,7 @@ public class JardimController implements Serializable
                 r.data = Date.valueOf(LocalDate.now());
                 r.recursoid = recursoBean.FindById(recurso.recursoid);
                 r.username = user;
-                
+                r.notificar = false;
                 recursoBean.inserirReserva(r);
                 
                 return "ReserveRecurso_Sucess.xhtml";

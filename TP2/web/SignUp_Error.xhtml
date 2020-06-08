@@ -12,12 +12,12 @@
             
             <h:panelGrid columns="2" >
                 <h:outputLabel value="Nome: "/>
-                <h:inputText value="#{utilizadoresController.novoUtilizador.username}"/>
+                <h:inputText value="#{jardimController.user.username}"/>
                 <h:outputLabel value="Palavra-passe: "/>
-                <h:inputSecret value="#{utilizadoresController.novoUtilizador.hashpassword}"/>
+                <h:inputSecret value="#{jardimController.user.hashpassword}"/>
             </h:panelGrid>
             
-            <h:commandButton value="Save" action="#{utilizadoresController.addNewUtilizador()}" style="width:100px"/>
+            <h:commandButton value="Save" action="#{jardimController.SignUp()}" style="width:100px"/>
         </h:form>
         <h:form>
         <h:commandButton value="Cancelar" action="index" style="width:100px"/>

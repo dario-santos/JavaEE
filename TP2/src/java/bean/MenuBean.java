@@ -9,6 +9,8 @@ import entities.Recurso;
 import entities.Requisitar;
 import entities.Reservar;
 import entities.Utilizador;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -161,22 +163,37 @@ public class MenuBean
         em.persist(r);
     }
 
-    public void devolver(Integer id) 
+    public void devolver(Integer id)
     {
         try
         {
             // Vai buscar o requisito com o id dado
-            Requisitar r = em.find(Requisitar.class, id);
+            Requisitar requisitar = em.find(Requisitar.class, id);
             
             // Atualiza como devolvido
-            em.createQuery("update Requisitar set devolvido = true where id=" + r.id).executeUpdate();
+            em.createQuery("update Requisitar set devolvido = true where id=" + requisitar.id).executeUpdate();
+            
+            // Vai buscar a última reserva colocada
+            Reservar reserva = (Reservar) em.createNamedQuery("Reservar.findFirst").getSingleResult();
+            
+            // Atualiza a linha da reserva para notificar quando o utilizador ir ao menu principal
+            em.createQuery("update Reservar set notificar = true where id=" + reserva.getId()).executeUpdate();
+            
+            // Cria uma nova linha no requisitar com os dados da reserva
+            Requisitar r = new Requisitar();
+            r.setId(greatestRequisitoId() + 1);
+            r.data = Date.valueOf(LocalDate.now());
+            r.devolvido = false;
+            r.recursoid = reserva.recursoid;
+            r.username = reserva.username;
+                
+            inserirRequisitar(r);
+    
         }
         catch(Exception ex)
         {
             System.out.println(ex.getMessage());
         }
-        // Vai verificar as reservas deste recurso
-        // Cria uma nova linha no requisitar com os dados da reserva
-        // Atualiza a linha da reserva para notificar quando o utilizador ir ao menu principal
+        
     }
 }
