@@ -37,6 +37,11 @@ public class UtilizadorBean
         
         try 
         {
+            // Calcular o hash da password introduzida pelo utilizador.
+            String password = user.getHashpassword();
+            String hashpassword = calculateSHA256(password);
+            user.setHashpassword(hashpassword);
+            
             em.persist(user);
             addedUser = true;
         }
