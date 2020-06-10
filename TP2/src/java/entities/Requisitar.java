@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Requisitar.findByData", query = "SELECT r FROM Requisitar r WHERE r.data = :data")
     , @NamedQuery(name = "Requisitar.findByDevolvido", query = "SELECT r FROM Requisitar r WHERE r.devolvido = :devolvido")
     , @NamedQuery(name = "Requisitar.findByRecursoId", query = "SELECT r FROM Requisitar r WHERE r.recursoid.recursoid = :id AND r.devolvido = false")
+    , @NamedQuery(name = "Requisitar.findByRecursoIdUsername", query = "SELECT r FROM Requisitar r WHERE r.recursoid.recursoid = :idrecurso AND r.username.username = :username AND r.devolvido = false")
     , @NamedQuery(name = "Requisitar.findAllByUserId", query = "SELECT r FROM Requisitar r WHERE r.username.username = :id")
     , @NamedQuery(name = "Requisitar.findByUserId", query = "SELECT r FROM Requisitar r WHERE r.username.username = :id AND r.devolvido = :devolvido")
     , @NamedQuery(name = "Requisitar.findById", query = "SELECT r FROM Requisitar r WHERE r.id = :id")})

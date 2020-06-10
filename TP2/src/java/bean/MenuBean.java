@@ -5,6 +5,7 @@
  */
 package bean;
 
+import entities.Reclamacao;
 import entities.Recurso;
 import entities.Requisitar;
 import entities.Reservar;
@@ -52,7 +53,6 @@ public class MenuBean
                 .setParameter("id", user.username).setParameter("devolvido", devolvido).getResultList();
     }
     
-    
     public List<Requisitar> consultarHistoricoRequisitados(Utilizador user)
     {
         return (List<Requisitar>) em.createNamedQuery("Requisitar.findAllByUserId")
@@ -63,6 +63,17 @@ public class MenuBean
     {
         return (List<Reservar>) em.createNamedQuery("Reservar.findAllNotificationsByUserId")
                 .setParameter("id", user.username).getResultList();
+    }
+    
+    public List<Reclamacao> consultarReclamacoes() 
+    {
+        return (List<Reclamacao>) em.createNamedQuery("Reclamacao.findAll").getResultList();
+    }
+    
+    public List<Reclamacao> consultarReclamacoesId(Integer id) 
+    {
+        return (List<Reclamacao>) em.createNamedQuery("Reclamacao.findByIdrecurso")
+                .setParameter("idrecurso", id).getResultList();
     }
     
     public Integer greatestRecursoId()
@@ -97,6 +108,12 @@ public class MenuBean
     }
     
     public void inserirRequisitar(Requisitar r) 
+    {
+        em.persist(r);
+    }
+    
+    
+    public void inserirReclamacao(Reclamacao r) 
     {
         em.persist(r);
     }
@@ -176,7 +193,20 @@ public class MenuBean
         
         return max;
     } 
-
+    
+    public int greatestReclamacaoId()
+    {    
+        Integer max = 0;
+        
+        List<Integer> ids = em.createNamedQuery("Reclamacao.findAllId").getResultList();
+        
+        for (Integer id : ids)
+            if (id > 0)
+                max = id;
+        
+        return max;
+    } 
+    
     public void inserirReserva(Reservar r)
     {
         em.persist(r);
@@ -216,12 +246,10 @@ public class MenuBean
         {
             System.out.println(ex.getMessage());
         }
-        
     }
 
     public void removerReserva(Integer id) 
     {
-     
         try
         {
             Reservar r = em.find(Reservar.class, id);
@@ -231,5 +259,21 @@ public class MenuBean
         {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public boolean CanAddReclamacao(Utilizador user, int idrecurso) 
+    {
+        try
+        {
+            em.createNamedQuery("Requisitar.findByRecursoIdUsername")
+                .setParameter("idrecurso", idrecurso).setParameter("username", user.username).getSingleResult();
+            return true;
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
+        return false;
     }
 }
