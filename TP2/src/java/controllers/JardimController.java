@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import bean.UtilizadorBean;
+import entities.Reclamacao;
 import entities.Recurso;
 import entities.Requisitar;
 import entities.Reservar;
@@ -32,8 +33,20 @@ public class JardimController implements Serializable
     
     Requisitar requisitar = new Requisitar();
     
+    Reclamacao reclamacao = new Reclamacao();
+
     List<Recurso> recursosTags = new ArrayList<>();
 
+    List<Reclamacao> reclamacoesId = new ArrayList<>();
+
+    public List<Reclamacao> getReclamacoesId() {
+        return reclamacoesId;
+    }
+
+    public void setReclamacoesId(List<Reclamacao> reclamacoesId) {
+        this.reclamacoesId = reclamacoesId;
+    }
+    
     public UtilizadorBean getQueryBean() 
     {
         return queryBean;
@@ -84,6 +97,15 @@ public class JardimController implements Serializable
         this.requisitar = requisitar;
     }
     
+    public Reclamacao getReclamacao() 
+    {
+        return reclamacao;
+    }
+
+    public void setReclamacao(Reclamacao reclamacao) 
+    {
+        this.reclamacao = reclamacao;
+    }
     
     public List<Recurso> getRecursos() 
     {
@@ -110,7 +132,6 @@ public class JardimController implements Serializable
         return recursoBean.consultarNotifications(user).size();
     }
     
-    
     public List<Reservar> getNotificationList()
     {
         List<Reservar> notifications = recursoBean.consultarNotifications(user);
@@ -121,6 +142,12 @@ public class JardimController implements Serializable
         
         return notifications;
     }
+    
+    public List<Reclamacao> getReclamacoes() 
+    {
+        return recursoBean.consultarReclamacoes();
+    }
+    
 
     /**
      * Signs up a new user
@@ -295,5 +322,50 @@ public class JardimController implements Serializable
         }
         
         return "ReturnRecurso.xhtml";
+    }
+    
+    /**
+     * Adds a reclamation
+     * @return The according web page
+     */   
+    public String AddReclamacao()
+    {
+        try
+        {
+            // id
+            reclamacao.setId(recursoBean.greatestReclamacaoId()+1);
+            
+            reclamacao.setUsername(user.getUsername());
+
+            if(recursoBean.CanAddReclamacao(user, reclamacao.idrecurso))
+            {
+                recursoBean.inserirReclamacao(reclamacao);
+                return "AddReclamacao_Sucess.xhtml";
+            }
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
+        return "AddReclamacao_Error.xhtml";
+    }
+    
+    /**
+     * Search by a reclamacao
+     * @return The according web page
+     */   
+    public String SearchReclamacao()
+    {
+        try
+        {
+            this.reclamacoesId = recursoBean.consultarReclamacoesId(reclamacao.getId());
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
+        return "SearchReclamacao.xhtml";
     }
 }
