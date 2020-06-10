@@ -44,6 +44,16 @@
                     
                 </h:column>
             
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Proprietário"/>
+                    </f:facet>
+                    
+                    <h:link value="#{recurso.proprietario}" outcome="#{jardimController.OwnerProfile(recurso)}" />
+                    
+                </h:column>
+            
             </h:dataTable>
             
             <h:form>

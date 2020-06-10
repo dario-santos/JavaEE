@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
 
 import java.io.Serializable;
@@ -21,10 +16,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author themu
- */
 @Entity
 @Table(name = "RESERVAR")
 @XmlRootElement
@@ -35,7 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Reservar.findFirst", query = "SELECT r FROM Reservar r WHERE r.recursoid.recursoid = :id ORDER BY r.data")
     , @NamedQuery(name = "Reservar.findAllNotificationsByUserId", query = "SELECT r FROM Reservar r WHERE r.username.username = :id AND r.notificar = true")
     , @NamedQuery(name = "Reservar.findByRecursoId", query = "SELECT r FROM Reservar r WHERE r.recursoid.recursoid = :id")
-    , @NamedQuery(name = "Reservar.findById", query = "SELECT r FROM Reservar r WHERE r.id = :id")})
+    , @NamedQuery(name = "Reservar.findById", query = "SELECT r FROM Reservar r WHERE r.id = :id")
+    , @NamedQuery(name = "Reservar.findByUserId", query = "SELECT r FROM Reservar r WHERE r.username.username = :id")})
 public class Reservar implements Serializable {
 
     @Basic(optional = false)
@@ -130,5 +122,4 @@ public class Reservar implements Serializable {
     public void setNotificar(Boolean notificar) {
         this.notificar = notificar;
     }
-    
 }

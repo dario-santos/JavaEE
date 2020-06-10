@@ -8,7 +8,7 @@
     </h:head>
     <h:body>
         Remover Recurso
-        Erro ao remover recurso, o id tem que ser válido e ser o proprietario do recurso.
+        <h:outputText value="Erro ao remover recurso, o id tem que ser válido e ser o proprietario do recurso." style="color: red" />
         <h:form>
             <h:inputText value="#{jardimController.recurso.recursoid}" />
             <h:commandButton value="Remover" action="#{jardimController.RemoveRecurso()}" /> 

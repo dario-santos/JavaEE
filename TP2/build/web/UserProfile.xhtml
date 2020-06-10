@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Jardim - Perfil de #{jardimController.clicked_user}</title>
+    </h:head>
+    <h:body>
+        
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        
+        <c:choose>
+            <c:when test="#{jardimController.OwnProfile(jardimController.clicked_user)}" >
+            
+        <h:outputText value="Recursos inseridos por si" />
+        
+        <h:dataTable value="#{jardimController.recursosUserPerfilInseridos}" var="inseridos" border="1">
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Nome Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{inseridos.recursonome}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{inseridos.recursoid}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Tag(s)"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{inseridos.tags}"/>
+                    
+                </h:column>
+            
+            
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Remover"/>
+                    </f:facet>
+                    
+                    <h:form>
+                        <h:commandButton value="Remover" action="#{jardimController.RemoveRecurso()}" style="width: 120px" /> 
+                    </h:form>
+                    
+                </h:column>
+            
+            </h:dataTable>
+            
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        
+        <h:outputText value="Recursos requisitados por si" />
+        
+        <h:form>
+            <h:outputLabel value="Id de Requisição "/>
+            <h:inputText value="#{jardimController.requisitar.id}" />
+            <h:commandButton value="Devolver" action="#{jardimController.ReturnRecurso()}" /> 
+        </h:form>
+        
+        <h:dataTable value="#{jardimController.recursosUserPerfilRequisitados}" var="requisitados" border="1">
+            
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id de Requisição"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{requisitados.id}"/>
+                    
+                </h:column>
+            
+            <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{requisitados.recursoid}"/>
+                    
+                </h:column>
+                
+            
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Data"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{requisitados.data}"/>
+                    
+                </h:column>
+            
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Devolvido"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{requisitados.devolvido}"/>
+                    
+                </h:column>
+            
+            </h:dataTable>
+        
+        
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        
+        <h:outputText value="Recursos reservados por si" />
+        
+        <h:dataTable value="#{jardimController.recursosUserPerfilReservados}" var="reservados" border="1">
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reservados.recursoid}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Data"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reservados.data}"/>
+                    
+                </h:column>
+                
+            </h:dataTable> 
+            
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        
+        <h:outputText value="Reclamações redigidas por si" />
+        
+        <h:dataTable value="#{jardimController.reclamacoesUserPerfil}" var="reclamacoes" border="1">
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reclamacoes.idrecurso}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Reclamação"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reclamacoes.reclamacao}"/>
+                    
+                </h:column>
+                
+            </h:dataTable> 
+            
+            
+            <h:form>
+                <h:commandButton id="back" value="Voltar" action="MainMenu" />
+            </h:form>
+        
+        </c:when>
+            
+            <c:otherwise>
+                
+        
+        <h:outputText value="Perfil de #{jardimController.clicked_user}&lt;br /&gt;Recursos inseridos por #{jardimController.clicked_user}" escape="false" />
+        
+        <h:dataTable value="#{jardimController.recursosUserPerfilInseridos}" var="inseridos" border="1">
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Nome Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{inseridos.recursonome}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{inseridos.recursoid}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Tag(s)"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{inseridos.tags}"/>
+                    
+                </h:column>
+            
+            </h:dataTable>
+            
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        
+        <h:outputText value="Recursos requisitados por #{jardimController.clicked_user}" />
+        
+        <h:dataTable value="#{jardimController.recursosUserPerfilRequisitados}" var="requisitados" border="1">
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{requisitados.recursoid}"/>
+                    
+                </h:column>
+                
+            
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Data"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{requisitados.data}"/>
+                    
+                </h:column>
+            
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Devolvido"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{requisitados.devolvido}"/>
+                    
+                </h:column>
+            
+            </h:dataTable>
+        
+        
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        
+        <h:outputText value="Recursos reservados por #{jardimController.clicked_user}" />
+        
+        <h:dataTable value="#{jardimController.recursosUserPerfilReservados}" var="reservados" border="1">
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reservados.recursoid}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Data"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reservados.data}"/>
+                    
+                </h:column>
+                
+            </h:dataTable> 
+            
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <h:outputText value="&lt;br /&gt;" escape="false" />
+        
+        <h:outputText value="Reclamações redigidas por #{jardimController.clicked_user}" />
+        
+        <h:dataTable value="#{jardimController.reclamacoesUserPerfil}" var="reclamacoes" border="1">
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Id Recurso"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reclamacoes.idrecurso}"/>
+                    
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Reclamação"/>
+                    </f:facet>
+                    
+                    <h:outputText value="#{reclamacoes.reclamacao}"/>
+                    
+                </h:column>
+                
+            </h:dataTable> 
+            
+            
+            <h:form>
+                <h:commandButton id="back" value="Voltar" action="MainMenu" />
+            </h:form>
+        
+            </c:otherwise>
+        </c:choose>
+        
+    </h:body>
+</html>
+

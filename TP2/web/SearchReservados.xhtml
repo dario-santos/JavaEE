@@ -4,24 +4,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Jardim - Devolver recurso</title>
+        <title>Jardim - Consultar reservados</title>
     </h:head>
     <h:body>
-
-        <h:form>
-            <h:outputLabel value="Id de Requisição "/>
-            <h:inputText value="#{jardimController.requisitar.id}" />
-            <h:commandButton value="Devolver" action="#{jardimController.ReturnRecurso()}" /> 
-        </h:form>
-
-        <h:dataTable value="#{jardimController.getRequisitados()}" var="requisitar" border="1">
+        <h:dataTable value="#{jardimController.getReservados()}" var="reservar" border="1">
             <h:column>
 
                 <f:facet name="header">
-                    <h:outputText value="Id Requisição"/>
+                    <h:outputText value="Id Reserva"/>
                 </f:facet>
 
-                <h:outputText value="#{requisitar.id}"/>
+                <h:outputText value="#{reservar.id}"/>
 
             </h:column>
 
@@ -31,7 +24,7 @@
                     <h:outputText value="Id Recurso"/>
                 </f:facet>
 
-                <h:outputText value="#{requisitar.recursoid}"/>
+                <h:outputText value="#{reservar.recursoid}"/>
 
             </h:column>
 
@@ -42,7 +35,7 @@
                     <h:outputText value="Data de requisição"/>
                 </f:facet>
 
-                <h:outputText value="#{requisitar.data}"/>
+                <h:outputText value="#{reservar.data}"/>
 
             </h:column>
 

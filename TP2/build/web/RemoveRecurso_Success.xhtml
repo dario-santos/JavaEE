@@ -4,34 +4,34 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Jardim - Devolver recurso</title>
+        <title>Jardim - Remover recurso</title>
     </h:head>
     <h:body>
-
+        Remover Recurso
+        <h:outputText value="Recurso removido." style="color: greenyellow" />
         <h:form>
-            <h:outputLabel value="Id de Requisição "/>
-            <h:inputText value="#{jardimController.requisitar.id}" />
-            <h:commandButton value="Devolver" action="#{jardimController.ReturnRecurso()}" /> 
+            <h:inputText value="#{jardimController.recurso.recursoid}" />
+            <h:commandButton value="Remover" action="#{jardimController.RemoveRecurso()}" /> 
         </h:form>
 
-        <h:dataTable value="#{jardimController.getRequisitados()}" var="requisitar" border="1">
+        <h:dataTable value="#{jardimController.recursos}" var="recurso" border="1">
             <h:column>
 
                 <f:facet name="header">
-                    <h:outputText value="Id Requisição"/>
+                    <h:outputText value="Nome Recurso"/>
                 </f:facet>
 
-                <h:outputText value="#{requisitar.id}"/>
+                <h:outputText value="#{recurso.recursonome}"/>
 
             </h:column>
 
             <h:column>
 
                 <f:facet name="header">
-                    <h:outputText value="Id Recurso"/>
+                    <h:outputText value="Id"/>
                 </f:facet>
 
-                <h:outputText value="#{requisitar.recursoid}"/>
+                <h:outputText value="#{recurso.recursoid}"/>
 
             </h:column>
 
@@ -39,10 +39,10 @@
             <h:column>
 
                 <f:facet name="header">
-                    <h:outputText value="Data de requisição"/>
+                    <h:outputText value="Tag(s)"/>
                 </f:facet>
 
-                <h:outputText value="#{requisitar.data}"/>
+                <h:outputText value="#{recurso.tags}"/>
 
             </h:column>
 

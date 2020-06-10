@@ -9,6 +9,7 @@
     <h:body>
         
         <h:form>
+            <h:outputText value="Id do recurso: "/>
             <h:inputText value="#{jardimController.reclamacao.id}" />
             <h:commandButton value="Pesquisar" action="#{jardimController.SearchReclamacao()}" /> 
         </h:form>
@@ -51,7 +52,11 @@
                         <h:outputText value="Reclamador"/>
                     </f:facet>
                     
-                    <h:outputText value="#{reclamacao.username}"/>
+                    <!-- <h:outputText value="#{reclamacao.username}"/> -->
+                         
+                    <h:form>
+                        <h:commandButton value="#{reclamacao.username}" action="#{jardimController.UsersProfile(reclamacao.username)}" style="width: 120px" /> 
+                    </h:form>
                     
                 </h:column>
                 

@@ -19,10 +19,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Margarida
- */
 @Entity
 @Table(name = "RECURSO")
 @XmlRootElement
@@ -31,7 +27,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Recurso.findByRecursoid", query = "SELECT r FROM Recurso r WHERE r.recursoid = :recursoid")
     , @NamedQuery(name = "Recurso.getAllRecursoid", query = "SELECT r.recursoid FROM Recurso r")
     , @NamedQuery(name = "Recurso.findByRecursonome", query = "SELECT r FROM Recurso r WHERE r.recursonome = :recursonome")
-    , @NamedQuery(name = "Recurso.findByTags", query = "SELECT r FROM Recurso r WHERE r.tags LIKE :tags")})
+    , @NamedQuery(name = "Recurso.findByTags", query = "SELECT r FROM Recurso r WHERE r.tags LIKE :tags")
+    , @NamedQuery(name = "Recurso.findByProprietario", query = "SELECT r FROM Recurso r WHERE r.proprietario = :proprietario")})
 public class Recurso implements Serializable {
 
     @Size(max = 30)
@@ -142,7 +139,7 @@ public class Recurso implements Serializable {
 
     @Override
     public String toString() {
-        return "tp2.entities.Recurso[ recursoid=" + recursoid + " ]";
+        return String.valueOf(recursoid);
     }
 
     @XmlTransient
@@ -170,5 +167,4 @@ public class Recurso implements Serializable {
     public void setProprietario(String proprietario) {
         this.proprietario = proprietario;
     }
-
 }

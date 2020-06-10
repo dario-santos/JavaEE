@@ -12,6 +12,7 @@ import entities.Reservar;
 import entities.Utilizador;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -59,6 +60,12 @@ public class MenuBean
                 .setParameter("id", user.username).getResultList();
     }
     
+    public List<Reservar> consultarReservados(Utilizador user) {
+        
+        return (List<Reservar>) em.createNamedQuery("Reservar.findByUserId")
+                .setParameter("id", user.username).getResultList();
+    }
+    
     public List<Reservar> consultarNotifications(Utilizador user) 
     {
         return (List<Reservar>) em.createNamedQuery("Reservar.findAllNotificationsByUserId")
@@ -74,6 +81,12 @@ public class MenuBean
     {
         return (List<Reclamacao>) em.createNamedQuery("Reclamacao.findByIdrecurso")
                 .setParameter("idrecurso", id).getResultList();
+    }
+    
+    public List<Recurso> consultarTodosUser(String proprietario)
+    {
+        return (List<Recurso>) em.createNamedQuery("Recurso.findByProprietario")
+                .setParameter("proprietario", proprietario).getResultList();
     }
     
     public Integer greatestRecursoId()
@@ -276,4 +289,34 @@ public class MenuBean
         
         return false;
     }
+
+    
+    public List<Requisitar> consultarRequisitadosUser(String proprietario) {
+        List<Requisitar> nao_devolvidos = (List<Requisitar>) em.createNamedQuery("Requisitar.findByUserId")
+                .setParameter("id", proprietario).setParameter("devolvido", false).getResultList();
+        
+        List<Requisitar> devolvidos = (List<Requisitar>) em.createNamedQuery("Requisitar.findByUserId")
+                .setParameter("id", proprietario).setParameter("devolvido", true).getResultList();
+        
+        List<Requisitar> todos = new ArrayList<>();
+        
+        for (int i=0; i<nao_devolvidos.size(); i++) 
+            todos.add(nao_devolvidos.get(i));
+        
+        for (int i=0; i<devolvidos.size(); i++) 
+            todos.add(devolvidos.get(i));
+        
+        return todos;
+    }
+
+    public List<Reservar> consultarReservadosUser(String proprietario) {
+        return (List<Reservar>) em.createNamedQuery("Reservar.findByUserId")
+                .setParameter("id", proprietario).getResultList();
+    }
+
+    public List<Reclamacao> consultarReclamacoesUser(String proprietario) {
+        return (List<Reclamacao>) em.createNamedQuery("Reclamacao.findByUsername")
+                .setParameter("username", proprietario).getResultList();
+    }
+
 }

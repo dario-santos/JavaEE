@@ -7,8 +7,10 @@
         <title>Jardim - Pesquisar Reclamacao</title>
     </h:head>
     <h:body>
-        Pesquisar Reclamacao por id do recurso
+        <h:outputText value="Reclamações para o recurso de id = #{jardimController.reclamacao.id}"/>
+        
         <h:form>
+            <h:outputText value="Id do recurso: "/>
             <h:inputText value="#{jardimController.reclamacao.id}" />
             <h:commandButton value="Pesquisar" action="#{jardimController.SearchReclamacao()}" /> 
         </h:form>

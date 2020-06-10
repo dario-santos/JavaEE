@@ -36,9 +36,57 @@ public class JardimController implements Serializable
     Reclamacao reclamacao = new Reclamacao();
 
     List<Recurso> recursosTags = new ArrayList<>();
+    List<Recurso> recursos = new ArrayList<>();
 
     List<Reclamacao> reclamacoesId = new ArrayList<>();
+    
+    List<Recurso> recursosUserPerfilInseridos = new ArrayList<>();
+    List<Requisitar> recursosUserPerfilRequisitados = new ArrayList<>();
+    List<Reservar> recursosUserPerfilReservados = new ArrayList<>();
+    List<Reclamacao> reclamacoesUserPerfil = new ArrayList<>();
+    
+    String clicked_user;
 
+    public String getClicked_user() {
+        return clicked_user;
+    }
+
+    public void setClicked_user(String clicked_user) {
+        this.clicked_user = clicked_user;
+    }
+
+    public List<Recurso> getRecursosUserPerfilInseridos() {
+        return recursosUserPerfilInseridos;
+    }
+
+    public void setRecursosUserPerfilInseridos(List<Recurso> recursosUserPerfilInseridos) {
+        this.recursosUserPerfilInseridos = recursosUserPerfilInseridos;
+    }
+
+    public List<Requisitar> getRecursosUserPerfilRequisitados() {
+        return recursosUserPerfilRequisitados;
+    }
+
+    public void setRecursosUserPerfilRequisitados(List<Requisitar> recursosUserPerfilRequisitados) {
+        this.recursosUserPerfilRequisitados = recursosUserPerfilRequisitados;
+    }
+
+    public List<Reservar> getRecursosUserPerfilReservados() {
+        return recursosUserPerfilReservados;
+    }
+
+    public void setRecursosUserPerfilReservados(List<Reservar> recursosUserPerfilReservados) {
+        this.recursosUserPerfilReservados = recursosUserPerfilReservados;
+    }
+
+    public List<Reclamacao> getReclamacoesUserPerfil() {
+        return reclamacoesUserPerfil;
+    }
+
+    public void setReclamacoesUserPerfil(List<Reclamacao> reclamacoesUserPerfil) {
+        this.reclamacoesUserPerfil = reclamacoesUserPerfil;
+    }
+    
     public List<Reclamacao> getReclamacoesId() {
         return reclamacoesId;
     }
@@ -112,9 +160,17 @@ public class JardimController implements Serializable
         return recursoBean.consultarTodos();
     }
     
+    public void setRecursos(List<Recurso> recursos) {
+        this.recursos = recursos;
+    }
+    
     public List<Recurso> getRecursosTags() 
     {
         return recursosTags;
+    }
+
+    public void setRecursosTags(List<Recurso> recursosTags) {
+        this.recursosTags = recursosTags;
     }
     
     public List<Requisitar> getRequisitados() 
@@ -125,6 +181,11 @@ public class JardimController implements Serializable
     public List<Requisitar> getHistoricoRequisitados() 
     {
         return recursoBean.consultarHistoricoRequisitados(user);
+    }
+    
+    public List<Reservar> getReservados() 
+    {
+        return recursoBean.consultarReservados(user);
     }
     
     public Integer getNotifications()
@@ -164,10 +225,6 @@ public class JardimController implements Serializable
         {
         }
         
-        user.username = "";
-        user.hashpassword = "";
-        
-        
         return "SignUp_Error.xhtml";
     }
     
@@ -179,9 +236,6 @@ public class JardimController implements Serializable
     {
         if(queryBean.checkLogin(user))
             return "MainMenu.xhtml";
-        
-        user.username = "";
-        user.hashpassword = "";
         
         return "SignIn_Error.xhtml";
     }
@@ -231,7 +285,7 @@ public class JardimController implements Serializable
     
     /**
      * Solicites a certain resource, if possible
-     * @return The accordign web page
+     * @return The according web page
      */
     public String SolicitRecurso()
     {
@@ -302,7 +356,7 @@ public class JardimController implements Serializable
         try
         {
             if(recursoBean.remover(recurso.recursoid, user.username))
-                return "RemoveRecurso.xhtml";
+                return "RemoveRecurso_Success.xhtml";
         }
         catch(Exception ex)
         {
@@ -373,6 +427,21 @@ public class JardimController implements Serializable
             System.out.println(ex.getMessage());
         }
         
-        return "SearchReclamacao.xhtml";
+        return "SearchReclamacaoResults.xhtml";
+    }
+    
+    public String UsersProfile(String user) {
+        this.setClicked_user(user);
+        recursosUserPerfilInseridos = recursoBean.consultarTodosUser(user);
+        recursosUserPerfilRequisitados = recursoBean.consultarRequisitadosUser(user);
+        recursosUserPerfilReservados = recursoBean.consultarReservadosUser(user);
+        reclamacoesUserPerfil = recursoBean.consultarReclamacoesUser(user);
+        
+        return "UserProfile.xhtml";
+    }
+    
+    public Boolean OwnProfile(String user) {
+        
+        return this.user.username.equals(user);
     }
 }
