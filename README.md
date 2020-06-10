@@ -19,7 +19,7 @@
 - [X] Notificar o utilizador que reservou primeiro um material quando o utilizador que requisitou devolver o material.
 
 ### Adicionais
-- [ ] Reclamações;
+- [X] Reclamações;
 - [X] Poder consultar o histórico de quem já levou um recurso;
 - [ ] Perfil com estatísticas do utilizador;
 - [X] No mesmo browser não terminar a sessão;
