@@ -164,6 +164,10 @@ public class JardimController implements Serializable
         {
         }
         
+        user.username = "";
+        user.hashpassword = "";
+        
+        
         return "SignUp_Error.xhtml";
     }
     
@@ -175,6 +179,9 @@ public class JardimController implements Serializable
     {
         if(queryBean.checkLogin(user))
             return "MainMenu.xhtml";
+        
+        user.username = "";
+        user.hashpassword = "";
         
         return "SignIn_Error.xhtml";
     }
