@@ -400,14 +400,19 @@ public class JardimController implements Serializable
         try
         {
             // Devolve por id de requisição
-            recursoBean.devolver(requisitar.id);
+            Boolean devolvido = recursoBean.devolver(requisitar.id);
+            if (devolvido)
+                return "ReturnRecurso_Success.xhtml";
+            
+            else
+                return "ReturnRecurso_Error.xhtml";
         }
         catch(Exception ex)
         {
             System.out.println(ex.getMessage());
         }
         
-        return "ReturnRecurso.xhtml";
+        return "ReturnRecurso_Error.xhtml";
     }
     
     /**

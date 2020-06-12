@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bean;
 
 import entities.Reclamacao;
@@ -225,8 +220,9 @@ public class MenuBean
         em.persist(r);
     }
 
-    public void devolver(Integer id)
+    public Boolean devolver(Integer id)
     {
+        Boolean devolvido = false;
         try
         {
             // Vai buscar o requisito com o id dado
@@ -234,10 +230,12 @@ public class MenuBean
             
             // Verifica se já foi devolvido
             if(requisitar.devolvido)
-                return;
+                return devolvido;
             
             // Atualiza como devolvido
             em.createQuery("update Requisitar set devolvido = true where id=" + requisitar.id).executeUpdate();
+            
+            devolvido = true;
             
             // Vai buscar a última reserva colocada
             List<Reservar> reservas =  em.createNamedQuery("Reservar.findFirst")
@@ -263,6 +261,7 @@ public class MenuBean
         {
             System.out.println(ex.getMessage());
         }
+        return devolvido;
     }
 
     public void removerReserva(Integer id) 
