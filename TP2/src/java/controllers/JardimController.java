@@ -40,6 +40,8 @@ public class JardimController implements Serializable
 
     List<Reclamacao> reclamacoesId = new ArrayList<>();
     
+    List<Reservar> notifications = new ArrayList<>();
+    
     List<Recurso> recursosUserPerfilInseridos = new ArrayList<>();
     List<Requisitar> recursosUserPerfilRequisitados = new ArrayList<>();
     List<Reservar> recursosUserPerfilReservados = new ArrayList<>();
@@ -196,13 +198,19 @@ public class JardimController implements Serializable
     
     public List<Reservar> getNotificationList()
     {
-        List<Reservar> notifications = recursoBean.consultarNotifications(user);
+        notifications = recursoBean.consultarNotifications(user);
         
+        return notifications;
+    }
+    
+    public String returnFromNotification()
+    {
         // apagar todas as notificações da tabela
         for(Reservar r : notifications)
             recursoBean.removerReserva(r.getId());
         
-        return notifications;
+        return "MainMenu.xhtml";
+        
     }
     
     public List<Reclamacao> getReclamacoes() 

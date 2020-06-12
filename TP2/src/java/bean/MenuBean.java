@@ -232,6 +232,10 @@ public class MenuBean
             // Vai buscar o requisito com o id dado
             Requisitar requisitar = em.find(Requisitar.class, id);
             
+            // Verifica se já foi devolvido
+            if(requisitar.devolvido)
+                return;
+            
             // Atualiza como devolvido
             em.createQuery("update Requisitar set devolvido = true where id=" + requisitar.id).executeUpdate();
             
@@ -241,7 +245,7 @@ public class MenuBean
             
             Reservar reserva = reservas.get(0);
             
-            // Atualiza a linha da reserva para notificar quando o utilizador ir ao menu principal
+            // Atualiza a linha da reserva para notificar quando o utilizador for ao menu principal
             em.createQuery("update Reservar set notificar = true where id=" + reserva.getId()).executeUpdate();
             
             // Cria uma nova linha no requisitar com os dados da reserva
