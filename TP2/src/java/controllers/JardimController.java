@@ -169,7 +169,8 @@ public class JardimController implements Serializable
         return recursosTags;
     }
 
-    public void setRecursosTags(List<Recurso> recursosTags) {
+    public void setRecursosTags(List<Recurso> recursosTags) 
+    {
         this.recursosTags = recursosTags;
     }
     
@@ -287,6 +288,16 @@ public class JardimController implements Serializable
     {    
         recursosTags = recursoBean.consultarTag(recurso.tags);
         return "SearchByTags.xhtml";
+    }
+    
+    /**
+     * Public search available resources by tag(s)
+     * @return The according web page
+     */
+    public String PublicSearchRecursos() 
+    {    
+        recursosTags = recursoBean.consultarTag(recurso.tags);
+        return "PublicSearchByTags.xhtml";
     }
     
     /**
@@ -446,8 +457,8 @@ public class JardimController implements Serializable
         return "UserProfile.xhtml";
     }
     
-    public Boolean OwnProfile(String user) {
-        
-        return this.user.username.equals(user);
+    public Boolean OwnProfile(String user) 
+    {
+        return this.user.username != null && this.user.username.equals(user);
     }
 }
