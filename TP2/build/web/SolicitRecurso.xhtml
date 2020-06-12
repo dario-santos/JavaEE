@@ -6,10 +6,15 @@
     <h:head>
         <title>Jardim - Requisitar recurso</title>
     </h:head>
-    <h:body>       
+    <h:body>
+        
         <h:form>
-            <h:inputText value="#{jardimController.recurso.recursoid}" />
-            <h:commandButton value="Requisitar" action="#{jardimController.SolicitRecurso()}" /> 
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Id do Recurso "/>
+                <h:inputText value="#{jardimController.recurso.recursoid}" />
+                <h:commandButton value="Requisitar" action="#{jardimController.SolicitRecurso()}" style="width:100px"/> 
+
+            </h:panelGrid>
         </h:form>
 
         <h:dataTable value="#{jardimController.recursos}" var="recurso" border="1">

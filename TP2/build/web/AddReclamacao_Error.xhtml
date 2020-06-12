@@ -7,13 +7,19 @@
         <title>Jardim - Adicionar Reclamacao</title>
     </h:head>
     <h:body>
-        <h:outputText value="Erro ao adicionar reclamacao"/>
+        <h:outputText value="Erro ao adicionar reclamacao. Só pode reclamar recursos que tem requisitado neste momento." style="color:red"/>
        
         <h:form>
-            <h:inputText value="#{jardimController.reclamacao.idrecurso}"  style="width:50px" />
-            <h:inputText value="#{jardimController.reclamacao.reclamacao}" style="width:200px" />
-            <h:commandButton value="Reclamar" action="#{jardimController.AddReclamacao()}"/> 
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Id do Recurso "/>
+                <h:inputText value="#{jardimController.reclamacao.idrecurso}" style="width:200px"/>
+                <h:outputLabel value="Reclamacao "/>
+                <h:inputText value="#{jardimController.reclamacao.reclamacao}" style="width:200px" />
+
+                <h:commandButton value="Reclamar" action="#{jardimController.AddReclamacao()}" style="width:100px"/>
+            </h:panelGrid>
         </h:form>
+        
 
         <h:dataTable value="#{jardimController.recursos}" var="recurso" border="1">
             <h:column>

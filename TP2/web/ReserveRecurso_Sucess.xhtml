@@ -7,11 +7,16 @@
         <title>Jardim - Reservar recurso</title>
     </h:head>
     <h:body>
-        <h:outputText value="Reserva bem sucedida."/>
+               
+        <h:outputText value="Reserva bem sucedida." style="color: green"/>
        
         <h:form>
-            <h:inputText value="#{jardimController.recurso.recursoid}" />
-            <h:commandButton value="Pesquisar" action="#{jardimController.ReserveRecurso()}" /> 
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Id do Recurso "/>
+                <h:inputText value="#{jardimController.recurso.recursoid}" />
+                <h:commandButton value="Reservar" action="#{jardimController.ReserveRecurso()}" style="width:100px"/> 
+
+            </h:panelGrid>
         </h:form>
 
         <h:dataTable value="#{jardimController.recursos}" var="recurso" border="1">

@@ -7,11 +7,14 @@
         <title>Jardim - Remover recurso</title>
     </h:head>
     <h:body>
-        Remover Recurso
-
+       
         <h:form>
-            <h:inputText value="#{jardimController.recurso.recursoid}" />
-            <h:commandButton value="Remover" action="#{jardimController.RemoveRecurso()}" /> 
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Id do Recurso "/>
+                <h:inputText value="#{jardimController.recurso.recursoid}" />
+                <h:commandButton value="Remover" action="#{jardimController.RemoveRecurso()}" style="width:100px"/> 
+
+            </h:panelGrid>
         </h:form>
 
         <h:dataTable value="#{jardimController.recursos}" var="recurso" border="1">
