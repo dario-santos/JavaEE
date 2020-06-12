@@ -3,6 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
+    
     <h:head>
         <title>Jardim - Pesquisar recursos</title>
     </h:head>
@@ -50,7 +53,9 @@
                         <h:outputText value="Proprietário"/>
                     </f:facet>
                     
-                    <h:link value="#{recurso.proprietario}" outcome="#{jardimController.OwnerProfile(recurso)}" />
+                <h:form>
+                    <h:commandButton value="#{recurso.proprietario}" action="#{jardimController.UsersProfile(recurso.proprietario)}" style="width: 120px" /> 
+                </h:form>
                     
                 </h:column>
             

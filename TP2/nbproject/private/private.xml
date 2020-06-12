@@ -12,13 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Downloads/JavaEE-master/JavaEE-master/TP2/web/SignIn.xhtml</file>
-            <file>file:/C:/Users/User/Downloads/JavaEE-master/JavaEE-master/TP2/web/MainMenu.xhtml</file>
-            <file>file:/C:/Users/User/Downloads/JavaEE-master/JavaEE-master/TP2/web/SearchReclamacao.xhtml</file>
-            <file>file:/C:/Users/User/Downloads/JavaEE-master/JavaEE-master/TP2/web/SearchReclamacaoResults.xhtml</file>
-            <file>file:/C:/Users/User/Downloads/JavaEE-master/JavaEE-master/TP2/src/java/controllers/JardimController.java</file>
-            <file>file:/C:/Users/User/Downloads/JavaEE-master/JavaEE-master/TP2/web/index.xhtml</file>
-            <file>file:/C:/Users/User/Downloads/JavaEE-master/JavaEE-master/TP2/web/SignIn_Error.xhtml</file>
+            <file>file:/D:/GitHub/JavaEE/TP2/web/index.xhtml</file>
+            <file>file:/D:/GitHub/JavaEE/TP2/web/Notifications.xhtml</file>
+            <file>file:/D:/GitHub/JavaEE/TP2/web/SearchAll.xhtml</file>
+            <file>file:/D:/GitHub/JavaEE/TP2/web/MainMenu.xhtml</file>
+            <file>file:/D:/GitHub/JavaEE/TP2/web/UserProfile.xhtml</file>
+            <file>file:/D:/GitHub/JavaEE/TP2/src/java/controllers/JardimController.java</file>
+            <file>file:/D:/GitHub/JavaEE/TP2/web/SearchByTags.xhtml</file>
         </group>
     </open-files>
 </project-private>

@@ -3,10 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
+    
     <h:head>
         <title>Jardim - Para si!</title>
     </h:head>
-    
     <c:choose>
         <c:when test="#{jardimController.IsUserLogged()}">
             <p>Bem vindo de volta, #{jardimController.user.username}</p>
