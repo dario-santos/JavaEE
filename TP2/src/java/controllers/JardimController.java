@@ -325,7 +325,7 @@ public class JardimController implements Serializable
                 return "SolicitRecurso_Sucess.xhtml";
             }
         }
-        catch(NullPointerException ex)
+        catch(Exception ex)
         {
         }
         
@@ -357,7 +357,7 @@ public class JardimController implements Serializable
                 return "ReserveRecurso_Sucess.xhtml";
             }
         }
-        catch(NullPointerException ex)
+        catch(Exception ex)
         {
         }
         
