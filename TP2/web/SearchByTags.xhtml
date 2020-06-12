@@ -50,7 +50,9 @@
                         <h:outputText value="Proprietário"/>
                     </f:facet>
                     
-                    <h:link value="#{recurso.proprietario}" outcome="#{jardimController.OwnerProfile(recurso)}" />
+                <h:form>
+                    <h:commandButton value="#{recurso.proprietario}" action="#{jardimController.UsersProfile(recurso.proprietario)}" style="width: 120px" /> 
+                </h:form>
                     
                 </h:column>
             
