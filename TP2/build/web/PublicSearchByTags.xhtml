@@ -43,19 +43,7 @@
                     <h:outputText value="#{recurso.tags}"/>
                     
                 </h:column>
-            
-                <h:column>
-                    
-                    <f:facet name="header">
-                        <h:outputText value="Proprietário"/>
-                    </f:facet>
-                    
-                <h:form>
-                    <h:commandButton value="#{recurso.proprietario}" action="#{jardimController.UsersProfile(recurso.proprietario)}" style="width: 120px" /> 
-                </h:form>
-                    
-                </h:column>
-            
+             
             </h:dataTable>
             
             <h:form>
