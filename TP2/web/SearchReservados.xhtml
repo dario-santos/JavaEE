@@ -2,16 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
     
     <h:head>
         <title>Jardim - Consultar reservados</title>
     </h:head>
+    
     <h:body>
-        <h:dataTable value="#{jardimController.getReservados()}" var="reservar" border="1">
-            <h:column>
+        <p:dataTable value="#{jardimController.getReservados()}" var="reservar" >
+            <p:column>
 
                 <f:facet name="header">
                     <h:outputText value="Id Reserva"/>
@@ -19,9 +21,9 @@
 
                 <h:outputText value="#{reservar.id}"/>
 
-            </h:column>
+            </p:column>
 
-            <h:column>
+            <p:column>
 
                 <f:facet name="header">
                     <h:outputText value="Id Recurso"/>
@@ -29,10 +31,10 @@
 
                 <h:outputText value="#{reservar.recursoid}"/>
 
-            </h:column>
+            </p:column>
 
 
-            <h:column>
+            <p:column>
 
                 <f:facet name="header">
                     <h:outputText value="Data de requisição"/>
@@ -40,12 +42,12 @@
 
                 <h:outputText value="#{reservar.data}"/>
 
-            </h:column>
+            </p:column>
 
-        </h:dataTable>
+        </p:dataTable>
 
         <h:form>
-            <h:commandButton id="back" value="Voltar" action="MainMenu" />
+            <p:button id="back" value="Voltar" outcome="MainMenu" />
         </h:form>
 
     </h:body>

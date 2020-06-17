@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
     
@@ -9,24 +10,40 @@
         <title>Jardim - Inserir recurso</title>
     </h:head>
     <h:body>
-        
-        Inserir Recurso
+        <style type="text/css">
+            body .ui-staticmessage.ui-message {
+                width: 100%;
+            }
+        </style>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-3">
+                <p:staticMessage severity="info" summary="Inserir Recurso"/>
+            </div>
+        </div>
 
         <h:form>
             <h:panelGrid columns="2" >
-                <h:outputLabel value="Nome do Recurso: "/>
-                <h:inputText value="#{jardimController.recurso.recursonome}" />
-                <h:outputLabel value="Tags: "/>
-                <h:inputText value="#{jardimController.recurso.tags}"/>
+                <p:outputLabel value="Nome do Recurso: "/>
+                <p:inputText value="#{jardimController.recurso.recursonome}" />
+                <p:outputLabel value="Tags: "/>
+                <p:inputText value="#{jardimController.recurso.tags}"/>
             </h:panelGrid>
             
-            <h:commandButton value="Save" action="#{jardimController.AddNewRecurso()}"/>
+            <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+            
+            <p:growl id="growl" life="2000" />
+            <p:commandButton value="Save" action="#{jardimController.AddNewRecurso()}" update="growl" style="margin-right:20px;">
+                <p:confirm header="Confirmação" message="Tem a certeza?" icon="pi pi-exclamation-triangle" />
+            </p:commandButton>
+            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+            </p:confirmDialog>
+            
+            <p:button id="back" value="Voltar" outcome="MainMenu" />
+            
         </h:form>
-        
-            <h:form>
-                <h:commandButton id="back" value="Voltar" action="MainMenu" />
-            </h:form>
-        
     </h:body>
 </html>
 

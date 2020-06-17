@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
     
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
     
@@ -12,15 +13,15 @@
     </h:head>
     <h:body>
         
-        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
         
         <c:choose>
             <c:when test="#{jardimController.OwnProfile(jardimController.clicked_user)}" >
             
-        <h:outputText value="Recursos inseridos por si" />
+        <p:outputLabel value="Recursos inseridos por si" />
         
-        <h:dataTable value="#{jardimController.recursosUserPerfilInseridos}" var="inseridos" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.recursosUserPerfilInseridos}" var="inseridos" >
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Nome Recurso"/>
@@ -28,9 +29,9 @@
                     
                     <h:outputText value="#{inseridos.recursonome}"/>
                     
-                </h:column>
+                </p:column>
                 
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Id"/>
@@ -38,9 +39,9 @@
                     
                     <h:outputText value="#{inseridos.recursoid}"/>
                     
-                </h:column>
+                </p:column>
                 
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Tag(s)"/>
@@ -48,188 +49,190 @@
                     
                     <h:outputText value="#{inseridos.tags}"/>
                     
-                </h:column>
+                </p:column>
             
             
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Remover"/>
                     </f:facet>
                     
                     <h:form>
-                        <h:commandButton value="Remover" action="#{jardimController.RemoveRecurso()}" style="width: 120px" /> 
+                        <p:growl id="growl" life="2000" />
+                        <p:commandButton value="Remover" action="#{jardimController.RemoveRecurso()}" update="growl" />
                     </h:form>
                     
-                </h:column>
+                </p:column>
             
-            </h:dataTable>
+            </p:dataTable>
             
-        <h:outputText value="&lt;br /&gt;" escape="false" />
-        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
         
-        <h:outputText value="Recursos requisitados por si" />
+        <p:outputLabel value="Recursos requisitados por si" />
         
         <h:form>
-            <h:outputLabel value="Id de Requisição "/>
-            <h:inputText value="#{jardimController.requisitar.id}" />
-            <h:commandButton value="Devolver" action="#{jardimController.ReturnRecurso()}" /> 
+            <p:outputLabel value="Id de Requisição "/>
+            <p:inputText value="#{jardimController.requisitar.id}" />
+            <p:growl id="growl2" life="2000" />
+            <p:commandButton value="Devolver" action="#{jardimController.ReturnRecurso()}" update="growl2" />
         </h:form>
         
-        <h:dataTable value="#{jardimController.recursosUserPerfilRequisitados}" var="requisitados" border="1">
+        <p:dataTable value="#{jardimController.recursosUserPerfilRequisitados}" var="requisitados">
             
-                <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Id de Requisição"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Id de Requisição"/>
+                </f:facet>
                     
-                    <h:outputText value="#{requisitados.id}"/>
-                    
-                </h:column>
+                <h:outputText value="#{requisitados.id}"/>
+                  
+            </p:column>
             
-            <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Id Recurso"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Id Recurso"/>
+                </f:facet>
                     
-                    <h:outputText value="#{requisitados.recursoid}"/>
+                <h:outputText value="#{requisitados.recursoid}"/>
                     
-                </h:column>
+            </p:column>
                 
             
-                <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Data"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Data"/>
+                </f:facet>
                     
-                    <h:outputText value="#{requisitados.data}"/>
+                <h:outputText value="#{requisitados.data}"/>
                     
-                </h:column>
+            </p:column>
             
-                <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Devolvido"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Devolvido"/>
+                </f:facet>
                     
-                    <h:outputText value="#{requisitados.devolvido}"/>
+                <h:outputText value="#{requisitados.devolvido}"/>
                     
-                </h:column>
+            </p:column>
             
-            </h:dataTable>
+        </p:dataTable>
         
         
-        <h:outputText value="&lt;br /&gt;" escape="false" />
-        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
         
-        <h:outputText value="Recursos reservados por si" />
+        <p:outputLabel value="Recursos reservados por si" />
         
-        <h:dataTable value="#{jardimController.recursosUserPerfilReservados}" var="reservados" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.recursosUserPerfilReservados}" var="reservados">
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Id Recurso"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Id Recurso"/>
+                </f:facet>
                     
-                    <h:outputText value="#{reservados.recursoid}"/>
+                <h:outputText value="#{reservados.recursoid}"/>
                     
-                </h:column>
+            </p:column>
                 
-                <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Data"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Data"/>
+                </f:facet>
                     
-                    <h:outputText value="#{reservados.data}"/>
+                <h:outputText value="#{reservados.data}"/>
                     
-                </h:column>
+            </p:column>
                 
-            </h:dataTable> 
+        </p:dataTable> 
             
-        <h:outputText value="&lt;br /&gt;" escape="false" />
-        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
         
-        <h:outputText value="Reclamações redigidas por si" />
+        <p:outputLabel value="Reclamações redigidas por si" />
         
-        <h:dataTable value="#{jardimController.reclamacoesUserPerfil}" var="reclamacoes" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.reclamacoesUserPerfil}" var="reclamacoes">
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Id Recurso"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Id Recurso"/>
+                </f:facet>
                     
-                    <h:outputText value="#{reclamacoes.idrecurso}"/>
+                <h:outputText value="#{reclamacoes.idrecurso}"/>
                     
-                </h:column>
+            </p:column>
                 
-                <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Reclamação"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Reclamação"/>
+                </f:facet>
+                   
+                <h:outputText value="#{reclamacoes.reclamacao}"/>
                     
-                    <h:outputText value="#{reclamacoes.reclamacao}"/>
-                    
-                </h:column>
+            </p:column>
                 
-            </h:dataTable> 
+        </p:dataTable> 
             
             
-            <h:form>
-                <h:commandButton id="back" value="Voltar" action="MainMenu" />
-            </h:form>
+        <h:form>
+            <p:button id="back" value="Voltar" outcome="MainMenu"/>
+        </h:form>
         
         </c:when>
             
             <c:otherwise>
                 
         
-        <h:outputText value="Perfil de #{jardimController.clicked_user}&lt;br /&gt;Recursos inseridos por #{jardimController.clicked_user}" escape="false" />
+        <p:outputLabel value="Perfil de #{jardimController.clicked_user}&lt;br /&gt;Recursos inseridos por #{jardimController.clicked_user}" escape="false" />
         
-        <h:dataTable value="#{jardimController.recursosUserPerfilInseridos}" var="inseridos" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.recursosUserPerfilInseridos}" var="inseridos" >
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Nome Recurso"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Nome Recurso"/>
+                </f:facet>
                     
-                    <h:outputText value="#{inseridos.recursonome}"/>
+                <h:outputText value="#{inseridos.recursonome}"/>
                     
-                </h:column>
+            </p:column>
                 
-                <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Id"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Id"/>
+                </f:facet>
                     
-                    <h:outputText value="#{inseridos.recursoid}"/>
+                <h:outputText value="#{inseridos.recursoid}"/>
                     
-                </h:column>
+            </p:column>
                 
-                <h:column>
+            <p:column>
                     
-                    <f:facet name="header">
-                        <h:outputText value="Tag(s)"/>
-                    </f:facet>
+                <f:facet name="header">
+                    <h:outputText value="Tag(s)"/>
+                </f:facet>
                     
-                    <h:outputText value="#{inseridos.tags}"/>
+                <h:outputText value="#{inseridos.tags}"/>
                     
-                </h:column>
+            </p:column>
             
-            </h:dataTable>
+        </p:dataTable>
             
-        <h:outputText value="&lt;br /&gt;" escape="false" />
-        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
         
-        <h:outputText value="Recursos requisitados por #{jardimController.clicked_user}" />
+        <p:outputLabel value="Recursos requisitados por #{jardimController.clicked_user}" />
         
-        <h:dataTable value="#{jardimController.recursosUserPerfilRequisitados}" var="requisitados" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.recursosUserPerfilRequisitados}" var="requisitados">
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Id Recurso"/>
@@ -237,10 +240,10 @@
                     
                     <h:outputText value="#{requisitados.recursoid}"/>
                     
-                </h:column>
+                </p:column>
                 
             
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Data"/>
@@ -248,9 +251,9 @@
                     
                     <h:outputText value="#{requisitados.data}"/>
                     
-                </h:column>
+                </p:column>
             
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Devolvido"/>
@@ -258,18 +261,18 @@
                     
                     <h:outputText value="#{requisitados.devolvido}"/>
                     
-                </h:column>
+                </p:column>
             
-            </h:dataTable>
+            </p:dataTable>
         
         
-        <h:outputText value="&lt;br /&gt;" escape="false" />
-        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
         
-        <h:outputText value="Recursos reservados por #{jardimController.clicked_user}" />
+        <p:outputLabel value="Recursos reservados por #{jardimController.clicked_user}" />
         
-        <h:dataTable value="#{jardimController.recursosUserPerfilReservados}" var="reservados" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.recursosUserPerfilReservados}" var="reservados" >
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Id Recurso"/>
@@ -277,9 +280,9 @@
                     
                     <h:outputText value="#{reservados.recursoid}"/>
                     
-                </h:column>
+                </p:column>
                 
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Data"/>
@@ -287,17 +290,17 @@
                     
                     <h:outputText value="#{reservados.data}"/>
                     
-                </h:column>
+                </p:column>
                 
-            </h:dataTable> 
+            </p:dataTable> 
             
-        <h:outputText value="&lt;br /&gt;" escape="false" />
-        <h:outputText value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
+        <p:outputLabel value="&lt;br /&gt;" escape="false" />
         
-        <h:outputText value="Reclamações redigidas por #{jardimController.clicked_user}" />
+        <p:outputLabel value="Reclamações redigidas por #{jardimController.clicked_user}" />
         
-        <h:dataTable value="#{jardimController.reclamacoesUserPerfil}" var="reclamacoes" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.reclamacoesUserPerfil}" var="reclamacoes" >
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Id Recurso"/>
@@ -305,9 +308,9 @@
                     
                     <h:outputText value="#{reclamacoes.idrecurso}"/>
                     
-                </h:column>
+                </p:column>
                 
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Reclamação"/>
@@ -315,13 +318,13 @@
                     
                     <h:outputText value="#{reclamacoes.reclamacao}"/>
                     
-                </h:column>
+                </p:column>
                 
-            </h:dataTable> 
+            </p:dataTable> 
             
             
             <h:form>
-                <h:commandButton id="back" value="Voltar" action="MainMenu" />
+                <p:button id="back" value="Voltar" outcome="MainMenu" />
             </h:form>
         
             </c:otherwise>

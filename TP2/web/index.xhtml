@@ -2,31 +2,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    
-    <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
-    
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">    
     <h:head>
         <title>Jardim - Para si!</title>
     </h:head>
+    
+    <style type="text/css">
+        body .ui-staticmessage.ui-message {
+            width: 100%;
+        }
+    </style>
+   
     <c:choose>
         <c:when test="#{jardimController.IsUserLogged()}">
-            <p>Bem vindo de volta, #{jardimController.user.username}</p>
-            <p>Por favor entre no menu principal</p>
             
-            <h:form>
-                <h:commandButton value="Entrar" action="MainMenu" style="width:150px "/>
-            </h:form>
+            <p:tabMenu activeIndex="-1">
+                <p:menuitem value="Entrar" outcome="MainMenu" icon="ui-icon-person" />
+            </p:tabMenu>
+            
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-3">
+                    <p:staticMessage severity="info" summary="Bem vindo de volta, #{jardimController.user.username}!" detail="Por favor entre no menu principal!" />
+                </div>
+            </div>        
         </c:when>
         
         <c:otherwise>
-            <h:body>
-                <h:form>
-                    <h:commandButton value="Consultar Recursos" action="PublicSearchAll" style="width:150px"/>
-                    <h:commandButton value="Sign Up" action="SignUp" style="width:150px"/>
-                    <h:commandButton value="Sign In" action="SignIn" style="width:150px "/>
-                </h:form>
-            </h:body>
+            
+            <p:tabMenu activeIndex="-1">
+                <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+                <p:menuitem value="Consultar Recursos" outcome="PublicSearchAll" icon="ui-icon-search"/>
+                <p:menuitem value="Sign Up" outcome="SignUp" icon="pi pi-plus" />
+                <p:menuitem value="Sign In" outcome="SignIn" icon="pi pi-sign-in" />
+            </p:tabMenu>
+            
+            <img src="images/jardimParaSi.png" alt="Logo" style="display: block;
+                                                         margin-left: auto;
+                                                         margin-right: auto;
+                                                         width: 25%;
+                                                         height: 25%" />
         </c:otherwise>
         
     </c:choose>
