@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
     
@@ -10,16 +11,17 @@
         <title>Jardim - Pesquisar Reclamacao</title>
     </h:head>
     <h:body>
-        <h:outputText value="Reclamações para o recurso de id = #{jardimController.reclamacao.id}"/>
+        <p:outputLabel value="Reclamações para o recurso de id = #{jardimController.reclamacao.id}"/>
         
         <h:form>
-            <h:outputText value="Id do recurso: "/>
-            <h:inputText value="#{jardimController.reclamacao.id}" />
-            <h:commandButton value="Pesquisar" action="#{jardimController.SearchReclamacao()}" /> 
+            <p:outputLabel value="Id do recurso: "/>
+            <p:inputText value="#{jardimController.reclamacao.id}" />
+            <p:growl id="growl" life="2000" />
+            <p:commandButton value="Pesquisar" action="#{jardimController.SearchReclamacao()}" update="growl" /> 
         </h:form>
         
-        <h:dataTable value="#{jardimController.getReclamacoesId()}" var="reclamacao" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.getReclamacoesId()}" var="reclamacao" >
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Id"/>
@@ -27,9 +29,9 @@
                     
                     <h:outputText value="#{reclamacao.id}"/>
                     
-                </h:column>
+                </p:column>
                 
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Reclamacao"/>
@@ -37,10 +39,10 @@
                     
                     <h:outputText value="#{reclamacao.reclamacao}"/>
                     
-                </h:column>
+                </p:column>
                 
             
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Recurso Id"/>
@@ -48,9 +50,9 @@
                     
                     <h:outputText value="#{reclamacao.idrecurso}"/>
                     
-                </h:column>
+                </p:column>
             
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Reclamador"/>
@@ -58,12 +60,12 @@
                     
                     <h:outputText value="#{reclamacao.username}"/>
                     
-                </h:column>
+                </p:column>
                 
-            </h:dataTable>
+            </p:dataTable>
             
             <h:form>
-                <h:commandButton id="back" value="Voltar" action="MainMenu" />
+                <p:button id="back" value="Voltar" outcome="MainMenu" />
             </h:form>
     </h:body>
 </html>

@@ -271,6 +271,14 @@ public class JardimController implements Serializable
     public String LogOut() 
     {
         this.user = new Utilizador();
+        return Index();
+    }
+    
+    /**
+     * Go back in the pages to the index when needed
+     * @return The index web page
+     */
+    public String Index(){
         return "index.xhtml";
     }
     

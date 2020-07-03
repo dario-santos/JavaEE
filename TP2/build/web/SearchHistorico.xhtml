@@ -2,16 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
     
     <h:head>
-        <title>Jardim - Consultar historico</title>
+        <title>Jardim - Consultar histórico</title>
     </h:head>
+    
     <h:body>
-        <h:dataTable value="#{jardimController.getHistoricoRequisitados()}" var="requisitar" border="1">
-            <h:column>
+        <p:dataTable value="#{jardimController.getHistoricoRequisitados()}" var="requisitar" >
+            <p:column>
 
                 <f:facet name="header">
                     <h:outputText value="Id Requisição"/>
@@ -19,9 +21,9 @@
 
                 <h:outputText value="#{requisitar.id}"/>
 
-            </h:column>
+            </p:column>
 
-            <h:column>
+            <p:column>
 
                 <f:facet name="header">
                     <h:outputText value="Id Recurso"/>
@@ -29,10 +31,10 @@
 
                 <h:outputText value="#{requisitar.recursoid}"/>
 
-            </h:column>
+            </p:column>
 
 
-            <h:column>
+            <p:column>
 
                 <f:facet name="header">
                     <h:outputText value="Data de requisição"/>
@@ -40,9 +42,9 @@
 
                 <h:outputText value="#{requisitar.data}"/>
 
-            </h:column>
+            </p:column>
             
-            <h:column>
+            <p:column>
 
                 <f:facet name="header">
                     <h:outputText value="Devolvido"/>
@@ -50,13 +52,13 @@
 
                 <h:outputText value="#{requisitar.devolvido}"/>
 
-            </h:column>
+            </p:column>
 
 
-        </h:dataTable>
+        </p:dataTable>
 
         <h:form>
-            <h:commandButton id="back" value="Voltar" action="MainMenu" />
+            <p:button id="back" value="Voltar" outcome="MainMenu" />
         </h:form>
 
     </h:body>

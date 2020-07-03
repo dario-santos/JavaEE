@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
     
@@ -12,12 +13,13 @@
     <h:body>
         
         <h:form>
-            <h:inputText value="#{jardimController.recurso.tags}" />
-            <h:commandButton value="Pesquisar" action="#{jardimController.SearchRecursos()}" /> 
+            <p:inputText value="#{jardimController.recurso.tags}" style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+            <p:growl id="growl" life="2000" />
+            <p:commandButton value="Pesquisar" action="#{jardimController.SearchRecursos()}" update="growl" />
         </h:form>
         
-        <h:dataTable value="#{jardimController.recursos}" var="recurso" border="1">
-                <h:column>
+        <p:dataTable value="#{jardimController.recursos}" var="recurso">
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Nome Recurso"/>
@@ -25,9 +27,9 @@
                     
                     <h:outputText value="#{recurso.recursonome}"/>
                     
-                </h:column>
+                </p:column>
                 
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Id"/>
@@ -35,10 +37,10 @@
                     
                     <h:outputText value="#{recurso.recursoid}"/>
                     
-                </h:column>
+                </p:column>
                 
             
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Tag(s)"/>
@@ -46,9 +48,9 @@
                     
                     <h:outputText value="#{recurso.tags}"/>
                     
-                </h:column>
+                </p:column>
                 
-                <h:column>
+                <p:column>
                     
                     <f:facet name="header">
                         <h:outputText value="Proprietário"/>
@@ -58,13 +60,16 @@
                     <h:commandButton value="#{recurso.proprietario}" action="#{jardimController.UsersProfile(recurso.proprietario)}" style="width: 120px" /> 
                 </h:form>
                     
-                </h:column>
+                </p:column>
                 
-            </h:dataTable>
-            
-            <h:form>
-                <h:commandButton id="back" value="Voltar" action="MainMenu" />
-            </h:form>
+            </p:dataTable>
+        
+        <h:form> 
+            <p:growl id="growl" life="2000" />
+
+            <p:commandButton value="Voltar" id="back" action="MainMenu" update="growl" style="margin-right:20px;"/>
+        </h:form>
+        
     </h:body>
 </html>
 

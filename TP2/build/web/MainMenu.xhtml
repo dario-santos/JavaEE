@@ -2,41 +2,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" >
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/SVTdq4r/Badges-and-Designs-removebg-preview.png" />
+    
+    <style type="text/css">
+        body .ui-staticmessage.ui-message {
+            width: 100%;
+        }
+    </style>
     
     <h:head>
         <title>Jardim - Para si!</title>
     </h:head>
     
-    <h:body>
-        <h:outputText value="Bem-vindo, #{jardimController.user.username}"/>
-        
+    <h:body>        
         <h:form>
-        
-            <h:panelGrid columns="1" >
+
+            <p:menubar>
+                <p:submenu label="Perfil" icon="pi pi-user">
+                    <p:menuitem value="Ver Perfil" action="#{jardimController.UsersProfile(jardimController.user.username)}"/>
+                    <p:menuitem value="Notificações(#{jardimController.getNotifications()})" action="Notifications" />
+                    <p:separator />
+                    <p:menuitem value="Consultar Historico Requisitados" action="SearchHistorico"/>
+                    <p:menuitem value="Consultar Requisitados" action="SearchRequisitados"/>
+                    <p:menuitem value="Consultar Reservados" action="SearchReservados"/>
+                </p:submenu>
+
+                <p:submenu label="Materiais de Jardinagem" icon="pi pi-pencil">
+                    <p:menuitem value="Inserir" action="InsertRecurso"/>
+                    <p:menuitem value="Requisitar" action="SolicitRecurso" />
+                    <p:menuitem value="Reservar" action="ReserveRecurso" />
+                    <p:menuitem value="Remover" action="RemoveRecurso" />
+                    <p:menuitem value="Devolver Recurso" action="ReturnRecurso" />
+                    <p:separator />
+                    <p:menuitem value="Consultar Todos" action="SearchAll" />
+                </p:submenu>
+
+                <p:submenu label="Reclamações" icon="pi pi-info-circle">
+                    <p:menuitem value="Adicionar Reclamação" action="AddReclamacao"/>
+                    <p:menuitem value="Consultar Reclamação" action="SearchReclamacao" />
+                </p:submenu>
                 
-                <h:commandButton value="Perfil" action="#{jardimController.UsersProfile(jardimController.user.username)}" style="width:200px" />
-                
-                <h:commandButton value="Notificações(#{jardimController.getNotifications()})" action="Notifications" style="width:200px" />
-                <h:commandButton value="Inserir" action="InsertRecurso" style="width:200px" />
-                <h:commandButton value="Requisitar" action="SolicitRecurso" style="width:200px" />
-                <h:commandButton value="Reservar" action="ReserveRecurso" style="width:200px" />
-                <h:commandButton value="Remover" action="RemoveRecurso" style="width:200px" />
-                <h:commandButton value="Devolver Recurso" action="ReturnRecurso" style="width:200px" />
-                <h:commandButton value="Consultar Todos" action="SearchAll" style="width:200px" />
-                <h:commandButton value="Consultar Historico Requisitados" action="SearchHistorico" style="width:200px" />
-                <h:commandButton value="Consultar Requisitados" action="SearchRequisitados" style="width:200px" />
-                <h:commandButton value="Consultar Reservados" action="SearchReservados" style="width:200px" />
-                <h:commandButton value="Adicionar Reclamacao" action="AddReclamacao" style="width:200px" />
-                <h:commandButton value="Consultar Reclamacao" action="SearchReclamacao" style="width:200px" />
-                
-                <h:commandButton value="Log-Out" action="#{jardimController.LogOut()}"  style="width:200px" />
-                
-            </h:panelGrid>
-        
+                <f:facet name="options">
+                    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+                    <h:commandButton value="Log-Out" action="#{jardimController.LogOut()}" />
+                </f:facet>                
+            </p:menubar>            
         </h:form>
+        
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-3">
+                <p:staticMessage severity="info" summary="Bem vindo, #{jardimController.user.username}"/>
+            </div>
+        </div>
+        
+        <img src="images/jardimParaSi.png" alt="Logo" style="display: block;
+                                                         margin-left: auto;
+                                                         margin-right: auto;
+                                                         width: 25%;
+                                                         height: 25%" />
         
     </h:body>
 </html>
